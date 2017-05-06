@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import butterknife.ButterKnife;
+
 /**
  * Created by Amit on 04-05-2017.
  */
@@ -14,12 +16,28 @@ public abstract class Base extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getContentView());
-        if (getSupportActionBar() != null) {
-            setTitle(getNewTitle());
+        ButterKnife.bind(this);
+        setNewTitle(R.string.app_name);
+    }
+
+
+    protected void setSubTitle(int subTitle) {
+        if (getSupportActionBar() != null && subTitle != 0) {
+            getSupportActionBar().setSubtitle(subTitle);
         }
     }
 
-    protected abstract int getNewTitle();
+    protected void setNewTitle(int title) {
+        if (getSupportActionBar() != null) {
+            setTitle(title);
+        }
+    }
+
+    protected void setBackButtonEnable() {
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+    }
 
     protected abstract int getContentView();
 }

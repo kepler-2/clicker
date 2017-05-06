@@ -3,9 +3,11 @@ package com.kepler.collections.clicker;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.widget.LinearLayout;
 
-import com.kepler.collections.clicker.adapte.HomeAdapter;
+import com.kepler.collections.clicker.adapte.Gallery;
+import com.kepler.collections.clicker.adapte.Notification;
 import com.kepler.collections.clicker.support.EmptyRecyclerView;
 
 import butterknife.BindView;
@@ -14,20 +16,20 @@ import butterknife.BindView;
  * Created by Amit on 04-05-2017.
  */
 
-public class FrgHome extends FrgBase {
+public class FrgNotifications extends FrgBase {
 
     @BindView(R.id.recyler_view)
     EmptyRecyclerView recyclerView;
     @BindView(R.id.list_empty_view)
     LinearLayout list_empty_view;
-    private  static FrgHome frgHomeInstance;
+    private static FrgNotifications frgHomeInstance;
     private Home activity;
-    private HomeAdapter homeAdapter;
+    private Notification notification;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        activity=(Home) getActivity();
+        activity = (Home) getActivity();
     }
 
     @Override
@@ -36,24 +38,23 @@ public class FrgHome extends FrgBase {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        activity.setSubTitle(R.string.notifications);
+    }
+    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         recyclerView.setLayoutManager(new LinearLayoutManager(activity));
         recyclerView.setEmptyView(list_empty_view);
-        homeAdapter=new HomeAdapter(activity.getApplicationContext());
-        recyclerView.setAdapter(homeAdapter);
+        notification = new Notification(activity.getApplicationContext());
+        recyclerView.setAdapter(notification);
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        activity.setSubTitle(R.string.home);
-    }
-
-    public static FrgHome getInstance(){
-        if(frgHomeInstance==null){
-            frgHomeInstance=new FrgHome();
+    public static FrgNotifications getInstance() {
+        if (frgHomeInstance == null) {
+            frgHomeInstance = new FrgNotifications();
         }
-           return frgHomeInstance;
+        return frgHomeInstance;
     }
 }

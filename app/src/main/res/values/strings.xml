@@ -1,4 +1,24 @@
 <resources>
     <string name="app_name">Clicker</string>
     <string name="home">Home</string>
+    <string name="profile">Profile</string>
+    <string name="missions">Missions</string>
+    <string name="notifications">Notifications</string>
+    <string name="gallery">Gallery</string>
+    <string name="following">Following</string>
+    <string name="follower">Follower</string>
+    <string name="no_data_available">Empty</string>
+    <string name="empty">Empty</string>
+    <string name="details">Details</string>
+    <string name="share">Share</string>
+    <string name="liked_content">111 people like this photo.</string>
+    <string name="commented_content">11 people commented on this photo.</string>
+    <string name="share_profile">Share Profile</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="upload">Upload</string>
+    <string name="settings">Settings</string>
+    <string name="feedback">Feedback</string>
+    <string name="rate">Rate Clicker</string>
+    <string name="change_pass">Change Password</string>
+    <string name="logout">Logout</string>
 </resources>

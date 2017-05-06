@@ -14,11 +14,6 @@ public class Splash extends Base {
     }
 
     @Override
-    protected int getNewTitle() {
-        return R.string.app_name;
-    }
-
-    @Override
     protected int getContentView() {
         return R.layout.activity_splash;
     }
@@ -33,8 +28,8 @@ public class Splash extends Base {
         }, 3000);
     }
 
-    private void startActivity(AppCompatActivity appCompatActivity, Class<? extends Base> nxtClass) {
+    public static void startActivity(AppCompatActivity appCompatActivity, Class<? extends Base> nxtClass) {
         Intent intent = new Intent(appCompatActivity, nxtClass);
-        startActivity(intent);
+        appCompatActivity.startActivity(intent);
     }
 }

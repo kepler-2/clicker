@@ -3,8 +3,10 @@ package com.kepler.collections.clicker;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.widget.LinearLayout;
 
+import com.kepler.collections.clicker.adapte.Gallery;
 import com.kepler.collections.clicker.adapte.HomeAdapter;
 import com.kepler.collections.clicker.support.EmptyRecyclerView;
 
@@ -14,20 +16,19 @@ import butterknife.BindView;
  * Created by Amit on 04-05-2017.
  */
 
-public class FrgHome extends FrgBase {
-
+public class FrgMyGallery extends FrgBase {
     @BindView(R.id.recyler_view)
     EmptyRecyclerView recyclerView;
     @BindView(R.id.list_empty_view)
     LinearLayout list_empty_view;
-    private  static FrgHome frgHomeInstance;
-    private Home activity;
-    private HomeAdapter homeAdapter;
+    private static FrgMyGallery frgHomeInstance;
+    private Profile activity;
+    private Gallery gallery;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        activity=(Home) getActivity();
+        activity = (Profile) getActivity();
     }
 
     @Override
@@ -38,22 +39,17 @@ public class FrgHome extends FrgBase {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        recyclerView.setLayoutManager(new LinearLayoutManager(activity));
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,1));
         recyclerView.setEmptyView(list_empty_view);
-        homeAdapter=new HomeAdapter(activity.getApplicationContext());
-        recyclerView.setAdapter(homeAdapter);
+        gallery = new Gallery(activity.getApplicationContext());
+        recyclerView.setAdapter(gallery);
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        activity.setSubTitle(R.string.home);
-    }
 
-    public static FrgHome getInstance(){
-        if(frgHomeInstance==null){
-            frgHomeInstance=new FrgHome();
+    public static FrgMyGallery getInstance() {
+        if (frgHomeInstance == null) {
+            frgHomeInstance = new FrgMyGallery();
         }
-           return frgHomeInstance;
+        return frgHomeInstance;
     }
 }
